@@ -2,15 +2,13 @@ import express from 'express';
 
 const app = express();
 
+// Utilizar formato JSON no express
+app.use(express.json());
+
 // Cria a rota /users na aplicação
-// request: informações sobre a requisição (cabeçalho, corpo...)
-app.get("/users", (request, response) => {
-  const users = [
-    { name: 'Diego', age: 25 },
-    { name: 'Juliana', age: 22 },
-    { name: 'Igor', age: 25 }
-  ]
-  return response.json(users);
+// request: parâmetros da requisição (cabeçalho, corpo...)
+app.get("/", (request, response) => {
+  return response.json({ message: 'Hello World' });
 });
 
 // Faz a aplicação ouvir requisições HTTP
