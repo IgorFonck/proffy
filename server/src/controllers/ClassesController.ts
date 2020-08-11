@@ -46,6 +46,7 @@ export default class ClassesController {
   }
   
   async create(request: Request, response: Response) {
+
     const {
       name,
       avatar,
