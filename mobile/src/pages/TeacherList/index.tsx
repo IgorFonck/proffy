@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, ScrollView, TextInput, Text } from 'react-native';
-import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
+import { RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -9,6 +9,7 @@ import PageHeader from '../../components/PageHeader';
 import api from '../../services/api';
 
 import styles from './styles';
+import { useFocusEffect } from '@react-navigation/native';
 
 function TeacherList() {
 
@@ -32,13 +33,11 @@ function TeacherList() {
         setFavorites(favoritedIds);
       }
     });
-  }, [favorites])
+  }, []);
 
   function handleToggleFilters() {
     setIsFilterVisible(!isFilterVisible);
   }
-
-
 
   async function handleFiltersSubmit() {
     const response = await api.get('classes', {
@@ -52,6 +51,10 @@ function TeacherList() {
     setIsFilterVisible(false);
     setTeachers(response.data);
   }
+
+  useFocusEffect(() => {
+    
+  });
 
   return (
     <View style={styles.container}>
